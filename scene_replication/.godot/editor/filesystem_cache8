@@ -1,0 +1,11 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1714150378
+export_presets.cfg::TextFile::-1::1713549383::0::1::::<><>::
+level.gd::GDScript::-1::1714150091::0::1::::<>Node3D<>::
+level.tscn::PackedScene::292429784712870037::1714150214::0::1::::<><>::uid://c6br8h3si2ypg::::res://sphere.tscn<>res://level.gd
+multiplayer.gd::GDScript::-1::1713539581::0::1::::<>Node<>::
+multiplayer.tscn::PackedScene::3888575950508913889::1714150214::0::1::::<><>::res://multiplayer.gd
+player.gd::GDScript::-1::1714150170::0::1::::<>CharacterBody3D<>::
+player.tscn::PackedScene::6386511649374471819::1714150361::0::1::::<><>::res://player.gd<>res://player_input.gd
+player_input.gd::GDScript::-1::1713527385::0::1::::<>MultiplayerSynchronizer<>::
+sphere.tscn::PackedScene::6951851429742749692::1714150214::0::1::::<><>::
