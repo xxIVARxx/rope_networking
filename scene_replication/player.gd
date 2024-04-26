@@ -5,8 +5,14 @@ const JUMP_VELOCITY = 4.5
 @onready var test = $test
 var local_player_character
 var level
+var _is_hitting = false
+var hookNode: Node3D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var HookScene = preload("res://grappling_hook_3d/src/hook.tscn")
+var hook_target_position : Vector3
+var source_posiition = Node3D
+var _hook_target_normal: Vector3
 
 # Set by the authority, synchronized on spawn.
 @export var player := 1 :
@@ -60,7 +66,12 @@ func _physics_process(delta):
 			_show.rpc()
 		else:
 			_hide.rpc()
-
+	
+	if player == multiplayer.get_unique_id():
+		if Input.is_action_pressed("laser"):
+			emit_hook.rpc()
+			handle_hook.rpc()
+	
 @rpc("any_peer","call_local")
 func _show():
 		get_node("test").visible = true
@@ -68,3 +79,24 @@ func _show():
 @rpc("any_peer","call_local")
 func _hide():
 	get_node("test").visible = false
+	
+	
+@rpc("any_peer", "call_local")
+func emit_hook():
+	if not friend:
+		return
+	if _is_hitting:
+		print("already running")
+		return
+	hookNode = HookScene.instantiate()
+	add_child(hookNode)
+
+	
+@rpc("any_peer", "call_local")
+func handle_hook():
+	if not friend:
+		return
+	hook_target_position = friend.global_position
+	source_posiition = position
+	hookNode.extend_from_to(source_posiition, hook_target_position, _hook_target_normal)
+

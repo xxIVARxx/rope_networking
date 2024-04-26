@@ -1,6 +1,7 @@
-res://multiplayer.tscn
+res://grappling_hook_3d/src/hook.tscn
+res://grappling_hook_3d/src/hook_controller.gd
 res://player.tscn
+res://player.gd
+res://multiplayer.tscn
 res://sphere.tscn
 res://level.tscn
-res://level.gd
-res://player.gd
